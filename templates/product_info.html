@@ -1,0 +1,38 @@
+{% extends 'template.html' %}
+
+{% block title_page %}Продукт {{ data.name }}{% endblock %}
+
+{% block content %}
+	
+	<div class="container-xl product-info">
+		<ul class="list-group list-group-flush">
+		    <li class="list-group-item"><h2>{{ data.name }}</h2></li>
+		    <li class="list-group-item list-group-item-mysuper-puper"><h4>Описание: </h4>{{ data.description }}</li>
+		    <li class="list-group-item">
+		    	<p>Стоимость товара: {{ data.price }}</p>
+		    	<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Оформить заказ</button>
+		    </li>
+		</ul>
+	</div>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Оформление заказа</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <form action="/order/{{ data.id }}" method="post">
+		      <div class="modal-body">
+		      	<p>Чтобы оформить заказ введите свой номер телефона. С Вами свяжется наш оператор.</p>
+		        <input type="text" class="form-control" name="phone_number" placeholder="Номер телефона">
+		      </div>
+		      <div class="modal-footer">
+		        <input type="submit" class="btn btn-secondary" value="Оформить заказ">
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+
+{% endblock %}
