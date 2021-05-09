@@ -8,7 +8,7 @@ app = Flask(__name__)
 # За детальной информацией перейдите в config.py
 
 # Чтобы видеть созданную структуру: измените 0 на 1, на строчке ниже. Чтобы не видеть созданную структуру: измените 1 на 0, на строчке ниже
-pr = ProductsStructure(logs = 0)
+pr = ProductsStructure(logs = 1)
 
 pr.create_product_structure()
 

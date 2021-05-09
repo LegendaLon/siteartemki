@@ -1,4 +1,7 @@
 from datetime import datetime as dt
+from prettytable import PrettyTable
+
+from colorama import Fore
 
 NAME_SHOP = "Магазин"
 
@@ -17,24 +20,21 @@ class ProductsStructure():
 		self.products = []
 		self.last_id = 1
 
+		# Красивая таблица структуры
+		self.table = PrettyTable([f"{Fore.YELLOW}ID{Fore.RESET}", f"{Fore.YELLOW}NAME{Fore.RESET}", f"{Fore.YELLOW}SHORT_DESCRIPTION{Fore.RESET}", f"{Fore.YELLOW}PRICE{Fore.RESET}"])
+
+		# Вывод итоговой структуры в консоль
 		self.log_status = logs
 
 	def logs(self):
-		print("===========[START PRINT LOG]===========")
-		for a in self.products:
-			print("===[ID:" + str(a["id"]) + "]===")
-			print("NAME: " + a["name"])
-			print("DESCRIPTION: " + a["description"])
-			if a["description"] != a["short_description"]:
-				print("SHORT_DESCRIPTION: " + a ["short_description"])
-			print("PRICE: " + a["price"])
-			print("===[END]===")
-			print("\n")
+		# Добавление товаров в таблицу, для красиового вывода
+		for product in self.products:
+			self.table.add_row([product['id'], product["name"], product["short_description"], product["price"]])
 
-		print("===========[END PRINT LOG]===========")
+		print(self.table)
 
 	def add_product(self, name=None, description=None, price=None):
-
+		# Добавление товаров
 		product = {
 			"id":self.last_id,
 			"name":name,
@@ -51,6 +51,7 @@ class ProductsStructure():
 		self.products.append(product)
 
 	def search_to_structure(self, id):
+		# Поиск по структуре
 		for product in self.products:
 			if product['id'] == id:
 				return product
