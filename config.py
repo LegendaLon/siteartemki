@@ -5,6 +5,11 @@ from colorama import Fore
 
 NAME_SHOP = "Магазин"
 
+SETTING_TEMPLATE = {
+	"index":"index.html",
+	"product_info":"product_info.html",
+}
+
 """ Время """
 def GetTime():
 	time = str(dt.now())[11:19]

@@ -4,6 +4,14 @@
 
 {% block content %}
 	
+	{% if notifications %}
+		{% for a in notifications %}
+			<div class="alert alert-light" role="alert">
+				{{ a }}
+			</div>
+		{% endfor %}
+	{% endif %}
+
 	<div class="container-xl product-info">
 		<ul class="list-group list-group-flush">
 		    <li class="list-group-item"><h2>{{ data.name }}</h2></li>
